@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Messages</h1>
+
+<%= render "form", message: @message %>
+
+<ul id="messages">
+  <% @messages.each do |message| %>
+    <li>
+      <%= render message %>
+    </li>
+  <% end %>
+</ul>
