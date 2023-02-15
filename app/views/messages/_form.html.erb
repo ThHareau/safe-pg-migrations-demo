@@ -16,7 +16,7 @@
     <%= form.text_field :text %>
   </div>
 
-  <%= fields_for :author do |author_field| %>
+  <%= form.fields_for :author do |author_field| %>
     <div>
       <%= author_field.label :name %>
       <%= author_field.text_field :name %>
