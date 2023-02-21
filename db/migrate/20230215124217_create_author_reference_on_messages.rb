@@ -11,7 +11,11 @@ class CreateAuthorReferenceOnMessages < ActiveRecord::Migration[7.0]
 
     execute "SET statement_timeout TO '5s'"
 
-    add_foreign_key :messages, :authors
+    add_foreign_key :messages, :authors, validate: false
+
+    execute "SET statement_timeout TO '0s'"
+
+    validate_foreign_key :messages, :author
 
     execute "SET statement_timeout TO #{quote(old_value + "s")}"
   end
