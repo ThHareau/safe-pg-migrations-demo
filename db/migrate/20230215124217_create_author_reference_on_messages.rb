@@ -3,7 +3,10 @@ class CreateAuthorReferenceOnMessages < ActiveRecord::Migration[7.0]
     old_value = query_value("SHOW statement_timeout")
     execute "SET statement_timeout TO '5s'"
 
+    old_lock_value = query_value("SHOW lock_timeout")
+    execute("SET lock_timeout TO '5s'")
     add_column :messages, :author_id, :bigint
+    execute("SET lock_timeout TO #{quote(old_lock_value + "s")}")
 
     execute "SET statement_timeout TO '0s'"
 
